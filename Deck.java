@@ -1,13 +1,22 @@
+import java.util.ArrayList;
+
 //This class will represent a deck of cards that contains 52 cards 
 public class Deck {
     private boolean isShuffled;
 
-    private char[] suits = new char[]{'H', 'D', 'C', 'S'};
-    private char[] values = new char[]{'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+    private char[] SUITS = new char[]{'H', 'D', 'C', 'S'};
+    private char[] VALUES = new char[]{'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+    private ArrayList<Card> deckOrder = new ArrayList<Card>(); 
 
     //TODO: Modify the constructor to create a deck of 52 cards using the Card class
     public Deck() {
         this.isShuffled = false;
+        // Create the deck of 52 cards
+        for (char suit : SUITS) {
+            for (char value : VALUES) {
+                deckOrder.add(new Card(value, suit));
+            }
+        }
     }
 
     private static void main(String[] args) {
@@ -23,10 +32,14 @@ public class Deck {
 
     public void printDeck() {
         // TODO: Print the deck of cards
-        for (char suit : suits) {
-            for (char value : values) {
-                System.out.println(value + " of " + suit);
-            }
+        
+    }
+
+    public Card drawCard(){
+        if (!deckOrder.isEmpty()) {
+            return deckOrder.remove(deckOrder.size() - 1);
+        } else {
+            return null; // or throw an exception if preferred
         }
     }
 }
