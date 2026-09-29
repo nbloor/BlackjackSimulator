@@ -19,7 +19,7 @@ public class Deck {
         }
     }
 
-    private static void main(String[] args) {
+    public static void main(String[] args){
         Deck deck = new Deck();
         deck.shuffle();
         deck.printDeck();
@@ -27,19 +27,21 @@ public class Deck {
 
     public void shuffle() {
         // TODO: Shuffle the deck of cards
-        this.isShuffled = true;
+        java.util.Collections.shuffle(deckOrder);
     }
 
     public void printDeck() {
         // TODO: Print the deck of cards
-        
+        for (Card card : deckOrder){
+            System.out.println(card.getSuit() + " of " + card.getValue());
+        }
     }
 
     public Card drawCard(){
         if (!deckOrder.isEmpty()) {
             return deckOrder.remove(deckOrder.size() - 1);
         } else {
-            return null; // or throw an exception if preferred
+            return null; //If no card left
         }
     }
 }
